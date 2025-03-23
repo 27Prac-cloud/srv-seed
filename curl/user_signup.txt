@@ -5,3 +5,5 @@ curl -X POST http://localhost:3000/api/signup \
            "password": "securepassword",
            "email": "test@example.com"
          }'
+
+
