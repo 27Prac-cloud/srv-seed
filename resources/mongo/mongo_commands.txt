@@ -1,0 +1,8 @@
+#Create DB
+use seed_db
+
+#Create Collection
+db.createCollection("users")
+
+#Show Collections
+show collections
