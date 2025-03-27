@@ -12,19 +12,16 @@ class CsvDatabase extends Database {
 
     async connect() {
         if (!fs.existsSync(this.dbPath)) {
-            fs.writeFileSync(this.dbPath, 'id,name,email\n'); // Initialize CSV with headers
+            fs.writeFileSync(this.dbPath, 'id,name,email,hashed_password\n'); // Initialize CSV with headers
         }
         console.log(`Connected to CSV Database at ${this.dbPath}`);
     }
 
     async create(collection, data) {
-        const id = Date.now(); // Unique ID based on timestamp
-        const newData = { id, ...data };
-
-        const csvData = parse([newData], { header: false });
+        const csvData = parse([data], { header: false });
         fs.appendFileSync(this.dbPath, `\n${csvData}`);
 
-        return newData;
+        return data;
     }
 
     async find(collection, query) {
